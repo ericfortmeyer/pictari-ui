@@ -1,5 +1,4 @@
 {
-    "root": "public/",
     "proxies": {
         "/api/": {
             "origin": "https://pictari.herokuapp.com/"

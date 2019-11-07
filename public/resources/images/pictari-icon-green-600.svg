@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="600"
+    height="600"
+    viewBox="0 0 600 600"
+    version="1.1">
+    <metadata>
+        <rdf:RDF
+        xmlns:rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rdfs = "http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:dc = "http://purl.org/dc/elements/1.1/" >
+            <dc:creator>
+                <rdf:Bag>
+                    <rdf:li>Eric Fortmeyer</rdf:li>
+                </rdf:Bag>
+            </dc:creator>
+        </rdf:RDF>
+    </metadata>
+    <g
+        stroke="#00f900"
+        stroke-width="20"
+        fill="black"
+    >
+    <path
+        d="M40 20
+           L560 20
+           Q 580 20 580 40
+           L580 560
+           Q 580 580 560 580
+           L40 580
+           Q 20 580 20 560
+           L20 40
+           Q 20 20 40 20 
+           Z"
+        />
+    <!-- left eye -->
+    <circle
+        cx="200"
+        cy="200"
+        r="20"
+        />
+    <!-- left eyebrow -->
+    <path
+        d="M260 160
+           L100 140
+           Z"
+        />
+    <!-- right eye -->
+    <rect
+        x="400"
+        y="180"
+        width="40"
+        height="40"
+        />
+    <!-- right eyebrow -->
+    <path
+        d="M360 160
+           L520 140
+           Z"
+        />
+    <!-- rainbow colors -->
+    <g>
+        <line
+            x1="260"
+            y1="300"
+            x2="260"
+            y2="425"
+            stroke="red"
+            stroke-width="20"
+            />
+        <line
+            x1="280"
+            y1="300"
+            x2="280"
+            y2="425"
+            stroke="orange"
+            stroke-width="20"
+            />
+        <line
+            x1="300"
+            y1="300"
+            x2="300"
+            y2="425"
+            stroke="yellow"
+            stroke-width="20"
+            />
+        <line
+            x1="320"
+            y1="300"
+            x2="320"
+            y2="425"
+            stroke="green"
+            stroke-width="20"
+            />
+        <line
+            x1="340"
+            y1="300"
+            x2="340"
+            y2="425"
+            stroke="blue"
+            stroke-width="20"
+            />
+    </g>
+    <!-- the nose -->
+    <circle
+        cx="300"
+        cy="300"
+        r="60"
+        fill="black"
+        />
+    <!-- line above mouth -->
+    <path
+        d="M20 425
+           L580 425
+           Z"
+        />
+    <!-- the mouth -->
+    <path
+        d="M90 500
+           Q 300 460 520 500
+           520 500
+           Z"
+        />
+    </g>
+</svg>

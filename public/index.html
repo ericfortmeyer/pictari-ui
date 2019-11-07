@@ -38,7 +38,7 @@
             },
             body: JSON.stringify({ url: "https://ericfortmeyer.dev/resources/images/icon-512.png"}),
           }
-        ).then( data => {
+        ).then(res => res.json()).then( data => {
           console.log(JSON.stringify(data));
         });
     </script>

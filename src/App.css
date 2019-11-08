@@ -1,22 +1,18 @@
-.App {
-  text-align: center;
+:root {
+  --primary: #0033cc;
+  --secondary: #9900ff;
+  @font-face {
+    font-family: "Atari";
+    src: url("./fonts/atari.ttf") format("truetype");
+  }
 }
 
-.App-logo {
-  height: 40vmin;
+main {
+  height: 100vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+body {
+  font-family: "Atari" Courier monospace;
+  margin: 0;
+  padding: 0;
 }

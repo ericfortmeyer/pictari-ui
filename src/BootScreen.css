@@ -1,0 +1,17 @@
+main,
+.bootscreen {
+    background-color: #000000;
+}
+
+.bootscreen {
+    text-align: left;
+    color: #00ff00;
+    font-family: Menlo, monospace;
+    font-size: 12pt;
+    font-weight: 200;
+    padding: 20vh 10vw 0;
+}
+
+.bootscreen h1 {
+    text-align: center;
+}

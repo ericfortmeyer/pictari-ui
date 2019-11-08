@@ -28,20 +28,6 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <script type="text/javascript">
-        fetch(
-          "https://pictari-ui.herokuapp.com/api/images",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ url: "https://ericfortmeyer.dev/resources/images/icon-512.png"}),
-          }
-        ).then(res => res.json()).then( data => {
-          console.log(JSON.stringify(data));
-        });
-    </script>
     <div id="root"></div>
     <!--
       This HTML file is a template.

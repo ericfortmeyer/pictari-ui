@@ -1,0 +1,29 @@
+main.level-one {
+    min-width: 1200px;
+    height: 100vh;
+    color: var(--primary);
+    background-color: navy;
+}
+
+.score {
+    color: var(--secondary);
+    font-size: 1.7vw;
+    padding-top: 1vh;
+    text-align: center;
+    margin: 1vh 10vw;
+}
+
+.score-title {
+    float: left;
+}
+
+.score-number {
+    float: right;
+}
+
+.player-won-message {
+    color: var(--secondary);
+    font-size: 2vw;
+    margin-top: 20vw;
+    text-align: center;
+}

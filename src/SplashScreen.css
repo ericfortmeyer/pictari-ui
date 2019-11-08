@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "Atari";
+    src: url("./fonts/atari.ttf") format("truetype");
+}
+main,
+.splash-screen {
+    background-color: #ffffff;
+}
+.splash-screen {
+    font-family: "Atari";
+    text-align: center;
+    font-size: 12pt;
+    color: var(--primary);
+    height: 100vh;
+}
+
+.splash-screen__brand-icon {
+    height: 20vh;
+    margin: 25vh 0 10vh;
+}
+
+.splash-screen h1 {
+    font-size: 2vw;
+}
+
+.splash-screen h2 {
+    font-size: 1vw;
+}

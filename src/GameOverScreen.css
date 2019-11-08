@@ -1,0 +1,16 @@
+main,
+.game-over-screen {
+    background-color: #000000;
+    font-family: "Atari";
+}
+
+.game-over-screen {
+    text-align: center;
+    padding: 23vh 0;
+    color: var(--primary);
+    color: red;
+}
+
+.game-over-screen__title-container > h1 {
+    font-size: 15vh;
+}

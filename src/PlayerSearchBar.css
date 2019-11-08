@@ -1,0 +1,28 @@
+.player-controls {
+    position: fixed;
+    bottom: 30px;
+    left: 20vw;
+}
+
+.player-hints {
+    color: var(--secondary);
+}
+
+.player-search-bar {
+    border: 2px solid var(--secondary);
+    border-radius: 30px;
+    color: var(--primary);
+    text-align: center;
+    background-color: lightgray;
+}
+
+.player-search-bar > input {
+    font-family: "Atari";
+    font-size: 1vw;
+    line-height: 1.5;
+    padding: 1vw;
+    width: 60vw;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+}

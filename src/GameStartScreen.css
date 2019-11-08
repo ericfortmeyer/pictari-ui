@@ -1,0 +1,36 @@
+main,
+.game-start-screen {
+    background-color: #000000;
+    font-family: "Atari";
+    text-align: center;
+}
+
+.game-start-screen {
+    padding: 20vh;
+    color: var(--primary);
+}
+
+.game-start-screen__title-container {
+    display: inline-block;
+    border: 2px solid var(--secondary);
+    border-radius: 25px;
+    padding: 10px;
+    margin-bottom: 20vh;
+}
+.game-start-screen__title-container > h1 {
+    margin: 0;
+    font-size: 20vh;
+    line-height: 0.775;
+}
+
+.start-button {
+    appearance: none;
+    font-family: "Atari";
+    font-size: 2rem;
+    border: none;
+    background: none;
+    color: var(--primary);
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}

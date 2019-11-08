@@ -13,12 +13,6 @@ export default class Pictari extends React.Component
         this.classes$ = of(["moveBeforeDeleteMode"]);
         this.deleteModeClass = "moveDuringDeleteMode";
         this.pauseClass = "pause";
-
-        // behavior here ??
-    }
-
-    incrementDeletes() {
-        this.numPicsDeleted++;
     }
 
     handlePictureDelete(index) {

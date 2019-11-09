@@ -97,6 +97,8 @@ export default class LevelOne extends React.Component
 
     handleDeleteFromPlayer = (index) => this.deletePics(index, new Player());
 
+    componentWillUnmount = () => clearTimeout(this.errorMsgTimer);
+
     render() {
         const { loadedSets, score, deleteMode, picColKeys, shouldDisplayLoader } = this.state;
         const { playerWon } = this;

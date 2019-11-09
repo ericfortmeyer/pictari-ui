@@ -1,19 +1,19 @@
 .loaded-pictures__picture-set-column.at-col-A {
-    left: 200px;
+    left: 20vw;
 }
 .loaded-pictures__picture-set-column.at-col-B {
-    left: 400px;
+    left: 33.333vw;
 }
 .loaded-pictures__picture-set-column.at-col-C {
-    left: 600px;
+    left: 46.3333vw;
 }
 .loaded-pictures__picture-set-column.at-col-D {
-    left: 800px;
+    left: 60vw;
 }
 
 .loaded-pictures__picture-set-column {
-    bottom: 10vh;
-    margin-bottom: 10vh;
+    bottom: 18vh;
+    /* margin-bottom: 30px; */
     position: absolute;
     display: inline-block;
     text-align: center;

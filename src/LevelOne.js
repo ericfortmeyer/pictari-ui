@@ -7,6 +7,7 @@ import ScoreDisplay from './ScoreDisplay';
 import PlayerSearchBar from './PlayerSearchBar';
 import ImageService from './api-services/ImageService';
 import PostPayload from './api-services/PostPayload';
+import { FadeLoader } from 'halogenium';
 import './LevelOne.css';
 
 /**@type Just using this to keep track of who is responsible for deleting a pic */
@@ -26,6 +27,7 @@ export default class LevelOne extends React.Component
             loadedSets: [],
             score: 0,
             deleteMode: false,
+            shouldDisplayLoader: false,
             picColKeys: []
         };
         /**@type {Player} - Use to keep track of pictures deleted by the player */
@@ -37,6 +39,7 @@ export default class LevelOne extends React.Component
 
     /**@param {string} url - For the API */
     addPics(url) {
+        this.setState((prevState) => ({shouldDisplayLoader: !prevState.shouldDisplayLoader}));
         const payload = new PostPayload({url: url});
         this.imageService
             .post(payload)
@@ -53,11 +56,12 @@ export default class LevelOne extends React.Component
                         newPicColKeys.push(this.pictureColKeys.shift());
                         const deleteMode = newSets.length === this.maxLoadedSets;
                         this.setState((prevState) => ({
-                                loadedSets: newSets,
-                                score: prevState.score + this.addingPicsScoreValue,
-                                deleteMode: deleteMode,
-                                picColKeys: newPicColKeys
-                            }));
+                            loadedSets: newSets,
+                            score: prevState.score + this.addingPicsScoreValue,
+                            deleteMode: deleteMode,
+                            picColKeys: newPicColKeys,
+                            shouldDisplayLoader: !prevState.shouldDisplayLoader
+                        }));
                     })
                 ).catch(e => console.log(e));
     }
@@ -74,8 +78,7 @@ export default class LevelOne extends React.Component
         this.playerLost = deleter instanceof Pictari && this.props.onPlayerLost(this);
         this.playerWon = newSets.length < 2 && !this.playerLost;
         const addToPrevScore = deleter instanceof Player ? this.deletingPicsScoreValue : 0;
-
-
+        // do this last
         newSets.splice(indexToRemove, 1);
         newPicColKeys.splice(indexToRemove, 1);
         this.setState((prevState) => ({loadedSets: newSets, score: prevState.score + addToPrevScore, picColKeys: newPicColKeys}));
@@ -85,9 +88,12 @@ export default class LevelOne extends React.Component
     handleDeleteFromPlayer = (index) => this.deletePics(index, new Player());
 
     render() {
-        const { loadedSets, score, deleteMode, picColKeys } = this.state;
+        const { loadedSets, score, deleteMode, picColKeys, shouldDisplayLoader } = this.state;
         const { playerWon } = this;
         return <main className="level-one">
+            <div className="loader-for-pics">
+                {shouldDisplayLoader && <FadeLoader color="gray" />}
+            </div>
             <ScoreDisplay score={score}/>
             { playerWon
                 ? (<div className="player-won-message"><h1>You Win!</h1></div>)

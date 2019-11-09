@@ -31,3 +31,11 @@ main.level-one {
     margin-top: 20vw;
     text-align: center;
 }
+
+.loader-for-pics {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 999999;
+    width: 400px;
+}

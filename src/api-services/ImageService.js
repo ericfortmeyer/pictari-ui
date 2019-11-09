@@ -9,7 +9,6 @@ export default class ImageService
     apiUrl = process.env.NODE_ENV === 'development'
         ? 'http://localhost:8080/images'
         : 'https://pictari-ui.herokuapp.com/api/images'; // put this in config later
-;
 
     /**
      * @param {string} url

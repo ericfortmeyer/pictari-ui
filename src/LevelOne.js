@@ -64,7 +64,7 @@ export default class LevelOne extends React.Component
                         }));
                     })
                 ).catch(() => {
-                    this.setState({shouldDisplayLoader: !shouldDisplayLoader})
+                    this.setState({shouldDisplayLoader: false})
                     this.handleNotSupportedError()
                 });
     }
@@ -100,7 +100,7 @@ export default class LevelOne extends React.Component
     componentWillUnmount = () => clearTimeout(this.errorMsgTimer);
 
     render() {
-        const { loadedSets, score, deleteMode, picColKeys, shouldDisplayLoader } = this.state;
+        const { loadedSets, score, deleteMode, picColKeys, shouldDisplayLoader, shouldDisplayErrorMsg } = this.state;
         const { playerWon } = this;
         return <main className="level-one">
             <div className="loader-for-pics">

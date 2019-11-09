@@ -32,7 +32,7 @@ export default class App extends React.Component
   }
 
   startBootScreenTimer() {
-    const timeToBoot = 5000; // ms
+    const timeToBoot = 35000; // ms
     // switch to splash screen
     this.bootScreenTimer = setTimeout(() => {
       this.setState((prevState) => ({

@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.cd1958e0.chunk.css",
-    "main.js": "/static/js/main.f5779d7f.chunk.js",
-    "main.js.map": "/static/js/main.f5779d7f.chunk.js.map",
+    "main.js": "/static/js/main.f3c9f61b.chunk.js",
+    "main.js.map": "/static/js/main.f3c9f61b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.6ecd1a9b.js",
     "runtime-main.js.map": "/static/js/runtime-main.6ecd1a9b.js.map",
     "static/js/2.25f3b963.chunk.js": "/static/js/2.25f3b963.chunk.js",
     "static/js/2.25f3b963.chunk.js.map": "/static/js/2.25f3b963.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.485457910c91f3f07ef4d4b271c5eec6.js": "/precache-manifest.485457910c91f3f07ef4d4b271c5eec6.js",
+    "precache-manifest.cb11faf3c29c404709bf47a3065dd005.js": "/precache-manifest.cb11faf3c29c404709bf47a3065dd005.js",
     "service-worker.js": "/service-worker.js",
     "static/css/main.cd1958e0.chunk.css.map": "/static/css/main.cd1958e0.chunk.css.map",
     "static/media/App.css": "/static/media/atari.e1d762aa.ttf",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.6ecd1a9b.js",
     "static/js/2.25f3b963.chunk.js",
     "static/css/main.cd1958e0.chunk.css",
-    "static/js/main.f5779d7f.chunk.js"
+    "static/js/main.f3c9f61b.chunk.js"
   ]
 }

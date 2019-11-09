@@ -28,6 +28,7 @@ export default class LevelOne extends React.Component
             score: 0,
             deleteMode: false,
             shouldDisplayLoader: false,
+            shouldDisplayErrorMsg: false,
             picColKeys: []
         };
         /**@type {Player} - Use to keep track of pictures deleted by the player */
@@ -39,11 +40,11 @@ export default class LevelOne extends React.Component
 
     /**@param {string} url - For the API */
     addPics(url) {
-        this.setState((prevState) => ({shouldDisplayLoader: !prevState.shouldDisplayLoader}));
         const payload = new PostPayload({url: url});
+        this.setState((prevState) => ({shouldDisplayLoader: !prevState.shouldDisplayLoader}));
         this.imageService
             .post(payload)
-            .then(jsonPayload => jsonPayload._links[0])
+            .then(jsonPayload => jsonPayload.code !== 415 ? jsonPayload._links[0] : (this.throwError("not supported")))
             .then(
                 link => this.imageService
                     .fetch(link)
@@ -54,16 +55,18 @@ export default class LevelOne extends React.Component
                         const newPicColKeys = [...this.state.picColKeys];
                         newSets.push(newSet);
                         newPicColKeys.push(this.pictureColKeys.shift());
-                        const deleteMode = newSets.length === this.maxLoadedSets;
                         this.setState((prevState) => ({
                             loadedSets: newSets,
-                            score: prevState.score + this.addingPicsScoreValue,
-                            deleteMode: deleteMode,
                             picColKeys: newPicColKeys,
+                            score: prevState.score + this.addingPicsScoreValue,
+                            deleteMode: newSets.length === this.maxLoadedSets,
                             shouldDisplayLoader: !prevState.shouldDisplayLoader
                         }));
                     })
-                ).catch(e => console.log(e));
+                ).catch(() => {
+                    this.setState({shouldDisplayLoader: !shouldDisplayLoader})
+                    this.handleNotSupportedError()
+                });
     }
 
     /**
@@ -85,6 +88,13 @@ export default class LevelOne extends React.Component
         this.imageService.delete(link);
     }
 
+    throwError(err) { throw err; }
+
+    handleNotSupportedError() {
+        this.setState({shouldDisplayErrorMsg: true});
+        this.errorMsgTimer = setTimeout(() => this.setState({shouldDisplayErrorMsg: false}), 5000);
+    }
+
     handleDeleteFromPlayer = (index) => this.deletePics(index, new Player());
 
     render() {
@@ -93,6 +103,9 @@ export default class LevelOne extends React.Component
         return <main className="level-one">
             <div className="loader-for-pics">
                 {shouldDisplayLoader && <FadeLoader color="gray" />}
+            </div>
+            <div style={{margin: "1rem 0"}}>
+                {shouldDisplayErrorMsg && <span style={{color: "white", fontSize: "1.5rem"}}>Are you sure that's a picture???</span>}
             </div>
             <ScoreDisplay score={score}/>
             { playerWon

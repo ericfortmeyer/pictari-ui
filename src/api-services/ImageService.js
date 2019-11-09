@@ -20,7 +20,9 @@ export default class ImageService
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(res => res.json()).then(json => new ImagePayload(json));
+        })
+        .then(res => res.json())
+        .then(json => new ImagePayload(json));
     }
 
     /**
@@ -34,7 +36,10 @@ export default class ImageService
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        }).then(res => res.json()).then(json => new JsonPayload(json));
+        })
+        .then(res => res.json())
+        .then(json => new JsonPayload(json))
+        .catch(() => new JsonPayload({code: 415, _links:[]}));
     }
 
     /**

@@ -29,6 +29,7 @@ export default class App extends React.Component
     clearTimeout(this.bootScreenTimer);
     clearTimeout(this.splashScreenTimer);
     clearTimeout(this.gameOverScreenTimer);
+    clearTimeout(this.playerWonScreenTimer);
   }
 
   startBootScreenTimer() {
@@ -64,32 +65,13 @@ export default class App extends React.Component
     },gameOverScreenRenderDuration);
   }
 
-  handlePlayerStartedGame() {
-    // switch to level one
-    this.setState((prevState) => ({
-      shouldRenderLevelOneScreen: true,
-      shouldRenderGameStartScreen: !prevState.shouldRenderGameStartScreen
-    }));
-  }
+  handlePlayerStartedGame = () => this.setState(() => ({shouldRenderLevelOneScreen: true, shouldRenderGameStartScreen: false}));
 
-  handlePlayerWon() {
-    // switch to start screen
-    this.setState((prevState) => ({
-      playerLost: true,
-      shouldRenderLevelOneScreen: !prevState.shouldRenderLevelOneScreen
-    }));
-  }
+  handlePlayerWon = () => this.playerWonScreenTimer = setTimeout(() => this.setState({shouldRenderGameStartScreen: true, shouldRenderLevelOneScreen: false}))
 
-  handlePlayerLost() {
-    this.setState((prevState) => ({
-      playerLost: true,
-      shouldRenderLevelOneScreen: !prevState.shouldRenderLevelOneScreen
-    }));
-  }
+  handlePlayerLost = () => this.setState(() => ({playerLost: true, shouldRenderLevelOneScreen: false}));
 
-  handlePlayerResetGame() {
-    window.location.reload(false);
-  }
+  handlePlayerResetGame = () => window.location.reload(false);
 
   render() {
     const {

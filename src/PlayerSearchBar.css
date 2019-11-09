@@ -21,8 +21,27 @@
     font-size: 1vw;
     line-height: 1.5;
     padding: 1vw;
-    width: 60vw;
+    width: var(--player-control-width);
     appearance: none;
     border: none;
     background-color: transparent;
 }
+
+.player-search-bar__submit-button {
+    visibility: hidden;
+}
+
+.player-search-bar__close::before {
+    content: 'x';
+}
+.player-search-bar__close {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3vw;
+    float: right;
+    color: black;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+}
+
+

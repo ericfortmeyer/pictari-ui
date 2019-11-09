@@ -1,10 +1,7 @@
 import React from 'react';
 
-export default class StartButton extends React.Component
+export default class StartButton extends React.PureComponent
 {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return this.props.blink && (
           <button

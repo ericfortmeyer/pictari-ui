@@ -1,3 +1,7 @@
+:root {
+    --player-control-width: 60vw;
+}
+
 main.level-one {
     min-width: 1200px;
     height: 100vh;

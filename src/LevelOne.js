@@ -1,101 +1,107 @@
 import React from 'react';
 import Picture from './Picture';
-import PictureSet from './PictureSet';
-import Player from './Player';
+import SetOfPictures from './SetOfPictures';
 import LoadedPictures from './LoadedPictures';
 import Pictari from './Pictari';
 import ScoreDisplay from './ScoreDisplay';
 import PlayerSearchBar from './PlayerSearchBar';
-import ImageService from './services/ImageService';
-import PostPayload from './services/PostPayload';
-import { of } from 'rxjs';
-import { filter, map, tap, last } from 'rxjs/operators';
+import ImageService from './api-services/ImageService';
+import PostPayload from './api-services/PostPayload';
 import './LevelOne.css';
+
+/**@type Just using this to keep track of who is responsible for deleting a pic */
+class Player {}
 
 export default class LevelOne extends React.Component
 {
     constructor(props) {
         super(props);
+
         this.addingPicsScoreValue = 200;
         this.deletingPicsScoreValue = 500;
         this.maxLoadedSets = 4;
         this.playerLost = false;
-        this.playerWon = false; // need both since I'm using this to display a message
+        this.playerWon = false;
+        this.state = {
+            loadedSets: [],
+            score: 0,
+            deleteMode: false,
+            picColKeys: []
+        };
+        /**@type {Player} - Use to keep track of pictures deleted by the player */
         this.player = new Player();
-        this.loadedSets$ = of([]); // PictureSet[]
-        this.score$ = of(0);
-        this.apiUrl = 'https://pictari-ui.herokuapp.com/images';
+        this.apiUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/images' : 'https://pictari-ui.herokuapp.com/images';
         this.imageService = new ImageService();
+        this.handleDeleteFromPlayer.bind(this);
+        this.pictureColKeys = ['A', 'B', 'C', 'D'];
     }
 
+    /**@param {string} url - For the API */
     addPics(url) {
         const payload = new PostPayload({url: url});
         this.imageService
             .post(this.apiUrl, payload)
-            .then(res => res.json())
             .then(jsonPayload => jsonPayload._links[0])
             .then(
                 link => this.imageService
                     .fetch(link)
                     .then(imagePayload => {
                         const data_uris = imagePayload.data_uris;
-                        const newSet = new PictureSet(link, ...data_uris.map((uri) => new Picture(uri)));
-                        this.loadedSets$.pipe(map(prev => prev.concat(newSet)))
+                        const newSet = new SetOfPictures(link, ...data_uris.map((uri) => new Picture(uri)));
+                        const newSets = [...this.state.loadedSets];
+                        const newPicColKeys = [...this.state.picColKeys];
+                        newSets.push(newSet);
+                        newPicColKeys.push(this.pictureColKeys.shift());
+                        const deleteMode = newSets.length === this.maxLoadedSets;
+                        this.setState((prevState) => ({
+                                loadedSets: newSets,
+                                score: prevState.score + this.addingPicsScoreValue,
+                                deleteMode: deleteMode,
+                                picColKeys: newPicColKeys
+                            }));
                     })
-                );
-        this.score$.pipe(reduce((acc, curr) => acc + curr, this.addingPicsScoreValue));
+                ).catch(e => console.log(e));
     }
 
+    /**
+     * @param {int} indexToRemove
+     * @param {Object} deleter - Who is deleting the picture?
+     * */
     deletePics(indexToRemove, deleter) {
-        this.loadedSets$.subscribe((pictureSets) => {
-            // remove it from the api
-            const link = pictureSets[indexToRemove].link;
-            this.imageService.delete(link);
-        }).unsubscribe();
+        let newSets = [...this.state.loadedSets];
+        let newPicColKeys = [...this.state.picColKeys];
+        const link = newSets[indexToRemove].link
         // player loses if Pictari deletes one pic
         this.playerLost = deleter instanceof Pictari && this.props.onPlayerLost(this);
-        this.loadedSets$.pipe(
-            // then remove it in our app
-            filter((_, index) => index !== indexToRemove),
-            // player won if all pics are deleted
-            last(loadedSet => loadedSet),
-            tap(loadedSet => this.playerWon = loadedSet.length === 0 && !this.playerLost)
-        );
-        // change the score if the player deleted a pic
-        deleter instanceof Player && this.score$.pipe(reduce((acc, curr) => acc + curr, this.deletingPicsScoreValue));
+        this.playerWon = newSets.length < 2 && !this.playerLost;
+        const addToPrevScore = deleter instanceof Player ? this.deletingPicsScoreValue : 0;
+
+
+        newSets.splice(indexToRemove, 1);
+        newPicColKeys.splice(indexToRemove, 1);
+        this.setState((prevState) => ({loadedSets: newSets, score: prevState.score + addToPrevScore, picColKeys: newPicColKeys}));
+        this.imageService.delete(link);
     }
 
-    handlePlayerDeletedFirstPic = () => this.deletePics(0, this.Player);
-
-    handlePlayerDeletedSecondPic = () => this.deletePics(1, this.Player);
-
-    handlePlayerDeletedThirdPic = () => this.deletePics(2, this.Player);
-
-    handlePlayerDeletedFourthPic = () => this.deletePics(3, this.Player);
+    handleDeleteFromPlayer = (index) => this.deletePics(index, new Player());
 
     render() {
-        const deletingAllowed = this.deletingAllowed;
-        const playerWon = this.playerWon;
+        const { loadedSets, score, deleteMode, picColKeys } = this.state;
+        const { playerWon } = this;
         return <main className="level-one">
-            <ScoreDisplay score={this.score$}/>
+            <ScoreDisplay score={score}/>
             { playerWon
                 ? (<div className="player-won-message"><h1>You Win!</h1></div>)
-                : (<Pictari deleteMode={deletingAllowed} availablePics$={this.loadedSets$} onPictariDeletedPic={this.deletePics.bind(this)}/>)
+                : (<Pictari deleteMode={deleteMode} availablePics={loadedSets} onPictariDeletedPic={this.deletePics.bind(this)}/>)
             }
-            <LoadedPictures pictureSets$={this.loadedSets$}/>
-            { this.loadedSets$.pipe(
-                last(loadedSets => {
-                    return loadedSets.length === this.maxLoadedSets
-                        ? (<div class="delete-buttons">
-                            <button id="first-pic-delete" type="button" onClick={this.handlePlayerDeletedFirstPic.bind(this)}>Delete First Pic</button>
-                            <button id="second-pic-delete" type="button" onClick={this.handlePlayerDeletedSecondPic.bind(this)}>Delete Second Pic</button>
-                            <button id="third-pic-delete" type="button" onClick={this.handlePlayerDeletedThirdPic.bind(this)}>Delete Third Pic</button>
-                            <button id="fourth-pic-delete" type="button" onClick={this.handlePlayerDeletedFourthPic.bind(this)}>Delete Fourth Pic</button>
-                        </div>)
-                        : (<PlayerSearchBar onPlayerSubmittedPicSearch={this.addPics.bind(this)}/>)
-                    }
-                ))
-            }
+            <LoadedPictures
+                keysForCols={picColKeys}
+                SetOfPictures={loadedSets}
+                deleteMode={deleteMode}
+                onPlayerDeletedPic={this.handleDeleteFromPlayer}/>
+            <div className="player-controls">
+                { deleteMode || (<PlayerSearchBar onPlayerSubmittedPicSearch={this.addPics.bind(this)}/>) }
+            </div>
         </main>
     }
 }

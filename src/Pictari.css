@@ -1,7 +1,10 @@
 .pictari-image-container {
+    --pictari-y-position: 15vh;
+}
+.pictari-image-container {
     position: absolute;
     left: 10vw;
-    top: 15vh;
+    top: var(--pictari-y-position);
 }
 
 .pictari-image-container > img {
@@ -14,15 +17,25 @@
     animation: mymove 3s alternate infinite;
 }
 
-.pause {
-    animation-play-state: paused;
+.pictari-image-container.moveDuringDeleteMode > img {
+    transition-property: background-color;
+    transition-timing-function: ease-in;
+    transition-duration: 3s;
+    background-color: red;
+}
+
+.pictari-image-container.moveDuringDeleteMode > svg {
+    stroke: red;
+    fill: red;
+    stroke-width: 8;
+    position: absolute;
+    animation: shootLaser 1s infinite;
+    display: block;
 }
 
 .moveDuringDeleteMode {
-    transition-property: left;
-    transition-timing-function: ease-in-out;
-    transition-delay: 1s;
-    transition-duration: 3s;
+    animation: mymove 1s alternate infinite;
+    animation-delay: 5s;
 }
 
 .goToFirstPic {
@@ -44,4 +57,9 @@
 @keyframes mymove {
     from {left: 10vw}
     to {left: 80vw}
+}
+
+@keyframes shootLaser {
+    from {transform: translate(70px,0)}
+    to {transform: translate(70px, 1000px)}
 }

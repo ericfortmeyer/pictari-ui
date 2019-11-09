@@ -32,7 +32,7 @@ export default class App extends React.Component
   }
 
   startBootScreenTimer() {
-    const timeToBoot = 35000; // ms
+    const timeToBoot = 5000; // ms
     // switch to splash screen
     this.bootScreenTimer = setTimeout(() => {
       this.setState((prevState) => ({
@@ -91,32 +91,33 @@ export default class App extends React.Component
     window.location.reload(false);
   }
 
-  // render = () => (
-  //   <LevelOne
-  //     onPlayerStartedGame={this.handlePlayerStartedGame.bind(this)}
-  //     onPlayerResetGame={this.handlePlayerResetGame.bind(this)}
-  //     onPlayerLost={this.handlePlayerLost.bind(this)}/>
-  // );
-
-  render() {
-    const {
-      shouldRenderBootScreen,
-      shouldRenderSplashScreen,
-      shouldRenderGameStartScreen,
-      shouldRenderLevelOneScreen,
-      playerLost
-    } = this.state;
-    playerLost && this.startGameOverScreenTimer();
-    return (shouldRenderBootScreen && <BootScreen/>)
-        || (shouldRenderSplashScreen && <SplashScreen/>)
-        || (shouldRenderGameStartScreen && <GameStartScreen onPlayerStartedGame={this.handlePlayerStartedGame.bind(this)}/>)
-        || (shouldRenderLevelOneScreen && (
+  render = () => (
           <LevelOne
             onPlayerStartedGame={this.handlePlayerStartedGame.bind(this)}
             onPlayerResetGame={this.handlePlayerResetGame.bind(this)}
             onPlayerWon={this.handlePlayerWon.bind(this)}
             onPlayerLost={this.handlePlayerLost.bind(this)}/>
-        ))
-        || (playerLost && <GameOverScreen/>);
-  }
+  );
+
+  // render() {
+  //   const {
+  //     shouldRenderBootScreen,
+  //     shouldRenderSplashScreen,
+  //     shouldRenderGameStartScreen,
+  //     shouldRenderLevelOneScreen,
+  //     playerLost
+  //   } = this.state;
+  //   playerLost && this.startGameOverScreenTimer();
+  //   return (shouldRenderBootScreen && <BootScreen/>)
+  //       || (shouldRenderSplashScreen && <SplashScreen/>)
+  //       || (shouldRenderGameStartScreen && <GameStartScreen onPlayerStartedGame={this.handlePlayerStartedGame.bind(this)}/>)
+  //       || (shouldRenderLevelOneScreen && (
+  //         <LevelOne
+  //           onPlayerStartedGame={this.handlePlayerStartedGame.bind(this)}
+  //           onPlayerResetGame={this.handlePlayerResetGame.bind(this)}
+  //           onPlayerWon={this.handlePlayerWon.bind(this)}
+  //           onPlayerLost={this.handlePlayerLost.bind(this)}/>
+  //       ))
+  //       || (playerLost && <GameOverScreen/>);
+  // }
 }

@@ -6,7 +6,10 @@ export default class ImageService
     /**
      * @property {string} apiUrl
      */
-    apiUrl = "";
+    apiUrl = process.env.NODE_ENV === 'development'
+        ? 'http://localhost:8080/images'
+        : 'https://pictari-ui.herokuapp.com/api/images'; // put this in config later
+;
 
     /**
      * @param {string} url
@@ -15,20 +18,18 @@ export default class ImageService
     fetch(url) {
         return fetch(url, {
             method: 'GET',
-            // cors: 'cors',
-            // headers: {
-            //     'Content-Type': 'application/json'
-            // }
+            headers: {
+                'Content-Type': 'application/json'
+            }
         }).then(res => res.json()).then(json => new ImagePayload(json));
     }
 
     /**
-     * @param {string} url 
      * @param {JsonPayload} data
      * @returns {Promise<JsonPayload>}
      */
-    post(url, data) {
-        return fetch(url, {
+    post(data) {
+        return fetch(this.apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -37,12 +38,13 @@ export default class ImageService
         }).then(res => res.json()).then(json => new JsonPayload(json));
     }
 
-    // not returning a payload
-    // and use the response header to verify
+    /**
+     * @param {string} url 
+     * @returns {Promise<any}
+     */
     delete(url) {
         return fetch(url, {
             method: 'DELETE',
-            cors: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             }

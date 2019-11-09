@@ -30,7 +30,6 @@ export default class LevelOne extends React.Component
         };
         /**@type {Player} - Use to keep track of pictures deleted by the player */
         this.player = new Player();
-        this.apiUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:8080/images' : 'https://pictari-ui.herokuapp.com/images';
         this.imageService = new ImageService();
         this.handleDeleteFromPlayer.bind(this);
         this.pictureColKeys = ['A', 'B', 'C', 'D'];
@@ -40,7 +39,7 @@ export default class LevelOne extends React.Component
     addPics(url) {
         const payload = new PostPayload({url: url});
         this.imageService
-            .post(this.apiUrl, payload)
+            .post(payload)
             .then(jsonPayload => jsonPayload._links[0])
             .then(
                 link => this.imageService

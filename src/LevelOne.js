@@ -106,14 +106,14 @@ export default class LevelOne extends React.Component
             <div className="loader-for-pics">
                 {shouldDisplayLoader && <FadeLoader color="gray" />}
             </div>
-            <div style={{margin: "1rem 0"}}>
-                {shouldDisplayErrorMsg && <span style={{color: "white", fontSize: "1.5rem"}}>Are you sure that's a picture???</span>}
-            </div>
             <ScoreDisplay score={score}/>
             { playerWon
                 ? (<div className="player-won-message"><h1>You Win!</h1></div>)
                 : (<Pictari deleteMode={deleteMode} availablePics={loadedSets} onPictariDeletedPic={this.deletePics.bind(this)}/>)
             }
+            <div style={{margin: "1rem 0"}}>
+                {shouldDisplayErrorMsg && <span style={{color: "white", fontSize: "1.5rem"}}>Are you sure that's a picture???</span>}
+            </div>
             <LoadedPictures
                 keysForCols={picColKeys}
                 SetOfPictures={loadedSets}

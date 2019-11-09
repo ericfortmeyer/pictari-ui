@@ -67,7 +67,7 @@ export default class App extends React.Component
 
   handlePlayerStartedGame = () => this.setState(() => ({shouldRenderLevelOneScreen: true, shouldRenderGameStartScreen: false}));
 
-  handlePlayerWon = () => this.playerWonScreenTimer = setTimeout(() => this.setState({shouldRenderGameStartScreen: true, shouldRenderLevelOneScreen: false}))
+  handlePlayerWon = () => this.playerWonScreenTimer = setTimeout(() => this.setState({shouldRenderGameStartScreen: true, shouldRenderLevelOneScreen: false}), 3000)
 
   handlePlayerLost = () => this.setState(() => ({playerLost: true, shouldRenderLevelOneScreen: false}));
 

@@ -79,7 +79,7 @@ export default class LevelOne extends React.Component
         const link = newSets[indexToRemove].link
         // player loses if Pictari deletes one pic
         this.playerLost = deleter instanceof Pictari && this.props.onPlayerLost(this);
-        this.playerWon = newSets.length < 2 && !this.playerLost;
+        this.playerWon = newSets.length < 2 && !this.playerLost && this.props.onPlayerWon();
         const addToPrevScore = deleter instanceof Player ? this.deletingPicsScoreValue : 0;
         // do this last
         newSets.splice(indexToRemove, 1);

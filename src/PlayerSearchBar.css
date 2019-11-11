@@ -6,6 +6,7 @@
 
 .player-hints {
     color: var(--secondary);
+    text-align: center;
 }
 
 .player-search-bar {
@@ -36,7 +37,7 @@
 }
 .player-search-bar__close {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 3vw;
+    font-size: 2.5vw;
     float: right;
     color: black;
     padding-left: 15px;

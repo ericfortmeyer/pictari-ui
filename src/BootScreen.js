@@ -11,7 +11,7 @@ export default class BootScreen extends React.PureComponent
             <Typist.Delay ms={nextLineDelay}/>
             <p>Booting kernel………………………………………………………………………………………………………………………………………………………………</p>
             <Typist.Delay ms={nextLineDelay}/>
-            <p>Loading modules………………………………………………………………………………………………………………………………………………………………</p>
+            <p>Loading modules……………………………………………………………………………………………………………………………………………………………</p>
             <Typist.Delay ms={nextLineDelay}/>
             <p>Hold on...</p>
             <Typist.Delay ms={nextLineDelay * 5}/>

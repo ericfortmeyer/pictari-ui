@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.cd1958e0.chunk.css",
-    "main.js": "/static/js/main.f2aa5bfd.chunk.js",
-    "main.js.map": "/static/js/main.f2aa5bfd.chunk.js.map",
+    "main.css": "/static/css/main.bc827895.chunk.css",
+    "main.js": "/static/js/main.f8e5517c.chunk.js",
+    "main.js.map": "/static/js/main.f8e5517c.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.6ecd1a9b.js",
     "runtime-main.js.map": "/static/js/runtime-main.6ecd1a9b.js.map",
     "static/js/2.25f3b963.chunk.js": "/static/js/2.25f3b963.chunk.js",
     "static/js/2.25f3b963.chunk.js.map": "/static/js/2.25f3b963.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.2001d864ca2605b0f1a5e1d9a9110fea.js": "/precache-manifest.2001d864ca2605b0f1a5e1d9a9110fea.js",
+    "precache-manifest.7a8adf9c243888726fe27e28bfbfd953.js": "/precache-manifest.7a8adf9c243888726fe27e28bfbfd953.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.cd1958e0.chunk.css.map": "/static/css/main.cd1958e0.chunk.css.map",
+    "static/css/main.bc827895.chunk.css.map": "/static/css/main.bc827895.chunk.css.map",
     "static/media/App.css": "/static/media/atari.e1d762aa.ttf",
     "static/media/pictari-icon-400.svg": "/static/media/pictari-icon-400.58708e40.svg",
     "static/media/pictari-icon-600.svg": "/static/media/pictari-icon-600.82880424.svg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.6ecd1a9b.js",
     "static/js/2.25f3b963.chunk.js",
-    "static/css/main.cd1958e0.chunk.css",
-    "static/js/main.f2aa5bfd.chunk.js"
+    "static/css/main.bc827895.chunk.css",
+    "static/js/main.f8e5517c.chunk.js"
   ]
 }

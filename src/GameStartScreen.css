@@ -1,12 +1,11 @@
-main,
-.game-start-screen {
-    background-color: #000000;
+main.game-start-screen {
     font-family: "Atari";
     text-align: center;
-}
-
-.game-start-screen {
-    padding: 20vh;
+    min-width: 1200px;
+    width: 100vw;
+    height: 100vh;
+    padding: 20vh 0;
+    background-color: #000000;
     color: var(--primary);
 }
 
@@ -19,7 +18,7 @@ main,
 }
 .game-start-screen__title-container > h1 {
     margin: 0;
-    font-size: 20vh;
+    font-size: 16vh;
     line-height: 0.775;
 }
 

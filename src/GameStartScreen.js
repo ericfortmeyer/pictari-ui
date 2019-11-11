@@ -30,9 +30,9 @@ export default class GameStartScreen extends React.Component
         const title = "Pictari";
         const shouldStartButtonBlink = this.state.shouldStartButtonBlink;
         const startButtonText = "Press Start";
-        return <main>
+        return <main className="game-start-screen">
             <div>
-                <div className="game-start-screen">
+                <div>
                     <div className="game-start-screen__title-container">
                         <h1>{title}</h1>
                     </div>

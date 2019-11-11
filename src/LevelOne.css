@@ -2,8 +2,21 @@
     --player-control-width: 60vw;
 }
 
+@media screen and (orientation: portrait) {
+    html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+}
+
 main.level-one {
     min-width: 1200px;
+    width: 100vw;
     height: 100vh;
     color: var(--primary);
     background-color: navy;

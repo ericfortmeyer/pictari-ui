@@ -12,7 +12,10 @@ export default class LoadedPictures extends React.Component
 
     render = () =>
           { return this.props.SetOfPictures.map((setOfPics, index) =>
-            <div key={index.toString()} className={`loaded-pictures__picture-set-column at-col-${this.props.keysForCols[index]}`}>
+            <div
+              key={index.toString()}
+              id={this.props.keysForCols[index]}
+              className={`loaded-pictures__picture-set-column`}>
                 {setOfPics.getSet().map((pic, index) => 
                     <img
                       key={index.toString()} 
@@ -20,7 +23,12 @@ export default class LoadedPictures extends React.Component
                       className="loaded-pictures__picture-set__thumbnail"
                       alt="a loaded pic"/>
                     )}
-                  {this.props.deleteMode && <button key={index.toString()} type="button" className="loaded-pictures__delete-button" value={index} onClick={(e) => this.handleDelete(e.target.value)}>Delete Pic</button>}
+                  {this.props.deleteMode && <button
+                                              key={index.toString()} 
+                                              type="button" 
+                                              className="loaded-pictures__delete-button" 
+                                              value={index} 
+                                              onClick={(e) => this.handleDelete(e.target.value)}>Delete Pic</button>}
               </div>
           )}
 }

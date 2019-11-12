@@ -1,14 +1,21 @@
-.loaded-pictures__picture-set-column.at-col-A {
-    left: 20vw;
+:root {
+    --left-x-coord-of-A: 20vw;
+    --left-x-coord-of-B: 33.33333333vw;
+    --left-x-coord-of-C: 46.33333333vw;
+    --left-x-coord-of-D: 60vw;
 }
-.loaded-pictures__picture-set-column.at-col-B {
-    left: 33.333vw;
+
+.loaded-pictures__picture-set-column#A {
+    left: var(--left-x-coord-of-A);
 }
-.loaded-pictures__picture-set-column.at-col-C {
-    left: 46.3333vw;
+.loaded-pictures__picture-set-column#B {
+    left: var(--left-x-coord-of-B);
 }
-.loaded-pictures__picture-set-column.at-col-D {
-    left: 60vw;
+.loaded-pictures__picture-set-column#C {
+    left: var(--left-x-coord-of-C);
+}
+.loaded-pictures__picture-set-column#D {
+    left: var(--left-x-coord-of-D);
 }
 
 .loaded-pictures__picture-set-column {

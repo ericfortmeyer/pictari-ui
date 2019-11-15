@@ -11,8 +11,8 @@ export default class App extends React.Component
   constructor(props) {
     super(props);
     this.state = {
-      shouldRenderBootScreen: true,
-      shouldRenderSplashScreen: false,
+      shouldRenderBootScreen: false,
+      shouldRenderSplashScreen: true,
       shouldRenderGameStartScreen: false,
       shouldRenderLevelOneScreen: false,
       playerLost: false,
@@ -22,7 +22,8 @@ export default class App extends React.Component
   componentDidMount = () => {
     // other timers will be started sequentially 
     // within the previous timer
-    this.startBootScreenTimer();
+    // this.startBootScreenTimer();
+    this.startSplashScreenTimer();
   }
 
   componentWillUnmount = () => {
